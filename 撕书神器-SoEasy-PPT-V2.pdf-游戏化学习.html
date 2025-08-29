@@ -1,0 +1,1414 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPA撕书神器-SoEasy-PPT-V2 交互式模拟</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            min-height: 250px;
+            max-height: 400px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-button.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .user-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .user-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- 标题部分 -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-blue-800 mb-2">CPA撕书神器-SoEasy-PPT-V2</h1>
+            <p class="text-xl text-gray-600">打造一款零散时间体系化学习工具 - 交互式模拟</p>
+        </header>
+
+        <!-- 钩子部分 -->
+        <section class="bg-blue-50 rounded-lg p-6 mb-8 border-l-4 border-blue-500">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-3">探索问题</h2>
+            <p class="text-lg text-gray-700">想象一下，每天在地铁上的10分钟，你不仅能复习CPA知识点，还能确保这些知识真正进入长期记忆。我们的"撕书神器"如何将碎片时间转化为高效学习？</p>
+        </section>
+
+        <!-- 标签导航 -->
+        <div class="flex flex-wrap mb-6 border-b">
+            <button class="tab-button px-4 py-2 font-medium text-gray-700 hover:text-blue-600 focus:outline-none active" data-tab="user-analysis">用户分析</button>
+            <button class="tab-button px-4 py-2 font-medium text-gray-700 hover:text-blue-600 focus:outline-none" data-tab="learning-model">学习模型</button>
+            <button class="tab-button px-4 py-2 font-medium text-gray-700 hover:text-blue-600 focus:outline-none" data-tab="simulation">交互模拟</button>
+            <button class="tab-button px-4 py-2 font-medium text-gray-700 hover:text-blue-600 focus:outline-none" data-tab="business-model">商业模式</button>
+            <button class="tab-button px-4 py-2 font-medium text-gray-700 hover:text-blue-600 focus:outline-none" data-tab="roadmap">产品路线图</button>
+        </div>
+
+        <!-- 标签内容区域 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <!-- 用户分析标签 -->
+            <div id="user-analysis" class="tab-content active">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">用户画像与市场分析</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- 用户画像卡片 -->
+                    <div class="user-card bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">在职冲刺族</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>25-35岁，会计/财务岗位</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>周学习4-8小时</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>地铁碎片化学习</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-yellow-500 mr-2">!</span>
+                                <span>付费意愿：高</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="user-card bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">宝妈攻坚族</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>31-40岁，财务岗/待业</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>周学3-6小时</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>深夜碎片化学习</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-yellow-500 mr-2">!</span>
+                                <span>付费意愿：中高</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="user-card bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">入门兼职备考者</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>缺乏财务知识体系</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>学习门槛高</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>需要引导性学习</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-yellow-500 mr-2">!</span>
+                                <span>付费意愿：中</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 市场分析图表 -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">CPA考生市场分析</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="chart-container">
+                            <canvas id="userTypeChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="marketSizeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 竞品分析 -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">竞品分析</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">竞品</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">优势</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">弱点</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">市场定位</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">东奥</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">品牌+大量真题/模拟题体系+App与离线视频</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">产品比较"课程化"、碎片化交付相对弱</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">综合课程提供商</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">高顿</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">强师资、丰富题库、AI学习功能</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">偏课程与付费班体系，轻量记忆工具非核心</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">高端课程提供商</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">正保/中华</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">传统题库+教材资源深厚，AI智能学习</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">产品线长，创新迭代节奏受传统架构限制</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">传统教育机构</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">233网校</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">强题库服务与低门槛练习、智能做题报告</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">偏"题库+直播"而非深度记忆引擎</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">题库练习平台</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学习模型标签 -->
+            <div id="learning-model" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">学习模型与原理</h2>
+                
+                <!-- 本质需求 -->
+                <div class="bg-blue-50 rounded-lg p-6 mb-8 border-l-4 border-blue-500">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">用户本质需求</h3>
+                    <p class="text-gray-700 mb-4">在职CPA备考者需要把大量零散、抽象的知识点在碎片时间里"快速复习并长期记住"，不是单次会做题的"题感"，而是可复用的记忆（能在考试/工作场景直接调用）</p>
+                    <div class="bg-white rounded-lg p-4 border border-gray-200">
+                        <p class="text-gray-600"><span class="font-semibold">为什么这是"本质"而非表面需求？</span> 现有刷题/课程能提高题感但对"长时记忆"支持有限；用户重复抱怨"记住不久/看完就忘"。长期记忆的缺失，正是影响通过率与效率的根源。</p>
+                    </div>
+                </div>
+
+                <!-- 学习模型图表 -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">记忆曲线对比</h3>
+                    <div class="chart-container">
+                        <canvas id="memoryCurveChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 学习闭环 -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">学习闭环设计</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 text-center shadow-sm">
+                            <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl font-bold text-blue-600">1</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">知识点卡片</h4>
+                            <p class="text-sm text-gray-600">将复杂知识点拆解为最小可记忆单元</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 text-center shadow-sm">
+                            <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl font-bold text-green-600">2</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">挖空练习</h4>
+                            <p class="text-sm text-gray-600">通过填空、检索式练习强化记忆</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 text-center shadow-sm">
+                            <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl font-bold text-yellow-600">3</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">SRS动态复习</h4>
+                            <p class="text-sm text-gray-600">基于间隔重复算法安排最佳复习时间</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 text-center shadow-sm">
+                            <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl font-bold text-purple-600">4</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">AI助教</h4>
+                            <p class="text-sm text-gray-600">智能解答疑问，提供个性化学习建议</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SRS算法解释 -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">间隔重复系统(SRS)原理</h3>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-3">算法原理</h4>
+                                <p class="text-gray-600 mb-3">间隔重复系统基于"艾宾浩斯遗忘曲线"，通过在最佳时间间隔复习，最大化记忆效率。</p>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2">•</span>
+                                        <span>初次学习后，短时间内快速遗忘</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2">•</span>
+                                        <span>每次成功复习，记忆保留时间呈指数增长</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-2">•</span>
+                                        <span>系统根据用户答题情况动态调整复习间隔</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-3">复习间隔示例</h4>
+                                <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                    <div class="space-y-3">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                                <span class="text-sm font-bold text-blue-600">1</span>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-800">第1次复习</p>
+                                                <p class="text-xs text-gray-500">学习后24小时</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                                <span class="text-sm font-bold text-green-600">2</span>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-800">第2次复习</p>
+                                                <p class="text-xs text-gray-500">第1次复习后3天</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
+                                                <span class="text-sm font-bold text-yellow-600">3</span>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-800">第3次复习</p>
+                                                <p class="text-xs text-gray-500">第2次复习后7天</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                                <span class="text-sm font-bold text-purple-600">4</span>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-800">第4次复习</p>
+                                                <p class="text-xs text-gray-500">第3次复习后16天</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 交互模拟标签 -->
+            <div id="simulation" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">学习效果交互模拟</h2>
+                
+                <!-- 参数控制面板 -->
+                <div class="bg-gray-50 rounded-lg p-6 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">模拟参数设置</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">用户类型</label>
+                            <select id="userType" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="working">在职冲刺族</option>
+                                <option value="mom">宝妈攻坚族</option>
+                                <option value="beginner">入门兼职备考者</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">每日学习时间 (分钟)</label>
+                            <input type="range" id="studyTime" min="5" max="60" value="20" class="w-full">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>5</span>
+                                <span id="studyTimeValue">20</span>
+                                <span>60</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">学习科目</label>
+                            <select id="subject" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="accounting">会计</option>
+                                <option value="tax">税法</option>
+                                <option value="audit">审计</option>
+                                <option value="financial">财务成本管理</option>
+                                <option value="strategy">公司战略</option>
+                                <option value="law">经济法</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">学习周期 (周)</label>
+                            <input type="range" id="studyPeriod" min="4" max="52" value="12" class="w-full">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>4</span>
+                                <span id="studyPeriodValue">12</span>
+                                <span>52</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button id="runSimulation" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            运行模拟
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 模拟结果展示 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">学习进度预测</h3>
+                        <div class="chart-container">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">记忆保留率预测</h3>
+                        <div class="chart-container">
+                            <canvas id="retentionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 模拟结果数据 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">模拟结果分析</h3>
+                    <div id="simulationResults" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">预计掌握知识点</p>
+                            <p class="text-2xl font-bold text-blue-600">--</p>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">平均记忆保留率</p>
+                            <p class="text-2xl font-bold text-green-600">--</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">预计考试通过率</p>
+                            <p class="text-2xl font-bold text-purple-600">--</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CIA演示 -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">用户体验闭环演示 (CIA)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Context (情境)</h4>
+                            <p class="text-gray-600">通勤10分钟，选择"今日卡片：会计—存货"</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Interaction (交互)</h4>
+                            <p class="text-gray-600">听2分钟音频，做4道挖空题，错误自动加入错题本，问AI助教"如何记住"</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">After (结果)</h4>
+                            <p class="text-gray-600">系统安排2天后复习，错题命中率在7天内提高40%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商业模式标签 -->
+            <div id="business-model" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">商业模式与风险分析</h2>
+                
+                <!-- 收入模式 -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">变现框架 (优先C端扩展B端)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-2">
+                                    <span class="text-sm font-bold text-blue-600">C</span>
+                                </span>
+                                C端收入流
+                            </h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">Freemium (基础免费)</p>
+                                        <p class="text-sm text-gray-600">基础知识点卡片和简单挖空练习免费</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">订阅 (科目/年卡)</p>
+                                        <p class="text-sm text-gray-600">高级功能如SRS算法、AI助教、详细学习报告</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">专项题库包</p>
+                                        <p class="text-sm text-gray-600">针对特定考试或难点的专项练习包</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">学管/一对一辅导增值</p>
+                                        <p class="text-sm text-gray-600">个性化学习计划和一对一辅导服务</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-2">
+                                    <span class="text-sm font-bold text-purple-600">B</span>
+                                </span>
+                                B端收入流
+                            </h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">API / White-label 授权</p>
+                                        <p class="text-sm text-gray-600">将记忆引擎授权给网校、出版社</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">企业培训解决方案</p>
+                                        <p class="text-sm text-gray-600">为企业提供定制化的员工培训记忆工具</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">按 seat / license 收费</p>
+                                        <p class="text-sm text-gray-600">根据使用人数或功能模块收费</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">数据分析服务</p>
+                                        <p class="text-sm text-gray-600">为机构提供学习行为和效果分析报告</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 收入漏斗图 -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">收入漏斗预测</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueFunnelChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 风险分析 -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">风险评估：AI与教育大厂的替代性</h3>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                                    <span class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-2">
+                                        <span class="text-sm font-bold text-green-600">短</span>
+                                    </span>
+                                    短期 (1-2年)
+                                </h4>
+                                <p class="text-gray-600 mb-3">AI提供智能化能力，提升产品效率，但不会替代</p>
+                                <div class="bg-green-50 rounded-lg p-3">
+                                    <p class="text-sm font-medium text-green-800 mb-1">护城河</p>
+                                    <ul class="text-xs text-green-700 space-y-1">
+                                        <li>• 工程化工具</li>
+                                        <li>• 用户黏性</li>
+                                        <li>• 数据积累</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                                    <span class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center mr-2">
+                                        <span class="text-sm font-bold text-yellow-600">中</span>
+                                    </span>
+                                    中期 (3年+)
+                                </h4>
+                                <p class="text-gray-600 mb-3">教育大厂可整合类似功能，风险存在</p>
+                                <div class="bg-yellow-50 rounded-lg p-3">
+                                    <p class="text-sm font-medium text-yellow-800 mb-1">应对策略</p>
+                                    <ul class="text-xs text-yellow-700 space-y-1">
+                                        <li>• 快速验证效果</li>
+                                        <li>• API化/与机构合作</li>
+                                        <li>• 寻求被并购/合作</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                                    <span class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center mr-2">
+                                        <span class="text-sm font-bold text-red-600">长</span>
+                                    </span>
+                                    长期 (5年+)
+                                </h4>
+                                <p class="text-gray-600 mb-3">市场可能饱和，需要持续创新</p>
+                                <div class="bg-red-50 rounded-lg p-3">
+                                    <p class="text-sm font-medium text-red-800 mb-1">长期策略</p>
+                                    <ul class="text-xs text-red-700 space-y-1">
+                                        <li>• 多考试领域扩展</li>
+                                        <li>• 通用记忆引擎SaaS</li>
+                                        <li>• 深度个性化模型</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品路线图标签 -->
+            <div id="roadmap" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">产品迭代路线图</h2>
+                
+                <!-- 时间轴 -->
+                <div class="mb-8">
+                    <div class="relative">
+                        <!-- 时间轴线 -->
+                        <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-blue-200 transform translate-x-0.5"></div>
+                        
+                        <!-- 时间轴项目 -->
+                        <div class="space-y-8">
+                            <!-- 第一代 -->
+                            <div class="relative pl-10">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">1</span>
+                                </div>
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">第一代 (MVP，0-6个月)</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 class="font-medium text-gray-700 mb-2">核心功能</h4>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2">•</span>
+                                                    <span>知识卡片</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2">•</span>
+                                                    <span>挖空练习</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2">•</span>
+                                                    <span>基础SRS</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-blue-500 mr-2">•</span>
+                                                    <span>小程序Demo</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-700 mb-2">关键指标</h4>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>1000人试点</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>DAU 200+</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>7日留存 40%+</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>转化率 5%+</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第二代 -->
+                            <div class="relative pl-10">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">2</span>
+                                </div>
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">第二代 (6-18个月)</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 class="font-medium text-gray-700 mb-2">核心功能</h4>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>完善真题映射</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>AI助教 (RAG)</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>社群+学管</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>B2B SDK</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-700 mb-2">关键指标</h4>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>DAU 5000+</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>30日留存 25%+</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>转化率 10%+</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>B端合作 3+</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第三代 -->
+                            <div class="relative pl-10">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">3</span>
+                                </div>
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-2">第三代 (18-36个月)</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 class="font-medium text-gray-700 mb-2">核心功能</h4>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li class="flex items-start">
+                                                    <span class="text-purple-500 mr-2">•</span>
+                                                    <span>多考试扩展</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-purple-500 mr-2">•</span>
+                                                    <span>通用记忆引擎SaaS</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-purple-500 mr-2">•</span>
+                                                    <span>深度个性化</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-purple-500 mr-2">•</span>
+                                                    <span>模型微调</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-700 mb-2">关键指标</h4>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>DAU 50000+</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>90日留存 15%+</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>转化率 15%+</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-green-500 mr-2">•</span>
+                                                    <span>B端收入占比 40%+</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技术积累与商业化节奏 -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">技术积累、数据积累与商业化节奏</h3>
+                    <div class="chart-container">
+                        <canvas id="rhythmChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="text-center text-gray-500 text-sm mt-10">
+            <p>CPA撕书神器-SoEasy-PPT-V2 交互式模拟 | 探索性解释项目</p>
+        </footer>
+    </div>
+
+    <script>
+        // 全局变量存储图表实例
+        let charts = {};
+
+        // 标签切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // 切换按钮状态
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // 切换内容显示
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                            // 初始化该标签页的图表
+                            initializeTabCharts(tabId);
+                        }
+                    });
+                });
+            });
+            
+            // 初始化默认标签页的图表
+            initializeTabCharts('user-analysis');
+            
+            // 初始化滑块事件
+            initializeSliders();
+            
+            // 初始化模拟按钮
+            initializeSimulation();
+        });
+
+        // 初始化滑块显示值
+        function initializeSliders() {
+            const studyTimeSlider = document.getElementById('studyTime');
+            const studyTimeValue = document.getElementById('studyTimeValue');
+            const studyPeriodSlider = document.getElementById('studyPeriod');
+            const studyPeriodValue = document.getElementById('studyPeriodValue');
+            
+            if (studyTimeSlider && studyTimeValue) {
+                studyTimeSlider.addEventListener('input', function() {
+                    studyTimeValue.textContent = this.value;
+                });
+            }
+            
+            if (studyPeriodSlider && studyPeriodValue) {
+                studyPeriodSlider.addEventListener('input', function() {
+                    studyPeriodValue.textContent = this.value;
+                });
+            }
+        }
+
+        // 初始化模拟按钮
+        function initializeSimulation() {
+            const runSimulationBtn = document.getElementById('runSimulation');
+            
+            if (runSimulationBtn) {
+                runSimulationBtn.addEventListener('click', function() {
+                    try {
+                        // 获取参数值
+                        const userType = document.getElementById('userType').value;
+                        const studyTime = parseInt(document.getElementById('studyTime').value);
+                        const subject = document.getElementById('subject').value;
+                        const studyPeriod = parseInt(document.getElementById('studyPeriod').value);
+                        
+                        // 验证输入
+                        if (isNaN(studyTime) || isNaN(studyPeriod) || studyTime < 5 || studyTime > 60 || studyPeriod < 4 || studyPeriod > 52) {
+                            throw new Error('参数值超出有效范围');
+                        }
+                        
+                        // 运行模拟
+                        runLearningSimulation(userType, studyTime, subject, studyPeriod);
+                    } catch (error) {
+                        console.error('模拟运行出错:', error);
+                        alert('模拟运行出错，请检查参数设置');
+                    }
+                });
+            }
+        }
+
+        // 运行学习模拟
+        function runLearningSimulation(userType, studyTime, subject, studyPeriod) {
+            // 根据用户类型设置基础参数
+            let baseEfficiency = 1.0;
+            switch(userType) {
+                case 'working':
+                    baseEfficiency = 1.2; // 在职冲刺族效率较高
+                    break;
+                case 'mom':
+                    baseEfficiency = 0.9; // 宝妈族效率中等
+                    break;
+                case 'beginner':
+                    baseEfficiency = 0.7; // 入门者效率较低
+                    break;
+            }
+            
+            // 根据科目调整参数
+            let subjectFactor = 1.0;
+            switch(subject) {
+                case 'accounting':
+                    subjectFactor = 1.1; // 会计知识点较多
+                    break;
+                case 'tax':
+                    subjectFactor = 1.2; // 税法记忆量大
+                    break;
+                case 'audit':
+                    subjectFactor = 0.9; // 审计理解性内容多
+                    break;
+                case 'financial':
+                    subjectFactor = 1.0; // 财务成本管理计算多
+                    break;
+                case 'strategy':
+                    subjectFactor = 0.8; // 公司战略相对简单
+                    break;
+                case 'law':
+                    subjectFactor = 1.1; // 经济法记忆点多
+                    break;
+            }
+            
+            // 计算模拟结果
+            const totalStudyMinutes = studyTime * 7 * studyPeriod; // 总学习时间（分钟）
+            const knowledgePoints = Math.floor(totalStudyMinutes * baseEfficiency * subjectFactor / 10); // 每10分钟掌握一个知识点
+            const avgRetention = Math.min(95, 40 + (studyPeriod * 2) + (studyTime / 4)); // 平均记忆保留率
+            const passRate = Math.min(90, 20 + (avgRetention * 0.6) + (knowledgePoints / 50)); // 预计考试通过率
+            
+            // 更新结果显示
+            const resultsContainer = document.getElementById('simulationResults');
+            if (resultsContainer) {
+                resultsContainer.innerHTML = `
+                    <div class="bg-blue-50 rounded-lg p-4">
+                        <p class="text-sm text-gray-600">预计掌握知识点</p>
+                        <p class="text-2xl font-bold text-blue-600">${knowledgePoints} 个</p>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-4">
+                        <p class="text-sm text-gray-600">平均记忆保留率</p>
+                        <p class="text-2xl font-bold text-green-600">${avgRetention.toFixed(1)}%</p>
+                    </div>
+                    <div class="bg-purple-50 rounded-lg p-4">
+                        <p class="text-sm text-gray-600">预计考试通过率</p>
+                        <p class="text-2xl font-bold text-purple-600">${passRate.toFixed(1)}%</p>
+                    </div>
+                `;
+            }
+            
+            // 更新图表
+            updateSimulationCharts(studyPeriod, knowledgePoints, avgRetention);
+        }
+
+        // 更新模拟图表
+        function updateSimulationCharts(studyPeriod, knowledgePoints, avgRetention) {
+            // 生成进度数据
+            const progressLabels = [];
+            const progressData = [];
+            for (let i = 1; i <= studyPeriod; i++) {
+                progressLabels.push(`第${i}周`);
+                // 模拟非线性增长
+                progressData.push(Math.floor(knowledgePoints * (1 - Math.exp(-i/5))));
+            }
+            
+            // 生成记忆保留率数据
+            const retentionLabels = [];
+            const retentionData = [];
+            for (let i = 1; i <= studyPeriod; i++) {
+                retentionLabels.push(`第${i}周`);
+                // 模拟记忆保留率增长
+                retentionData.push(Math.min(95, 40 + (i * 2) + (Math.random() * 5)));
+            }
+            
+            // 更新进度图表
+            if (charts.progressChart) {
+                charts.progressChart.data.labels = progressLabels;
+                charts.progressChart.data.datasets[0].data = progressData;
+                charts.progressChart.update();
+            } else {
+                const progressCtx = document.getElementById('progressChart');
+                if (progressCtx) {
+                    charts.progressChart = new Chart(progressCtx, {
+                        type: 'line',
+                        data: {
+                            labels: progressLabels,
+                            datasets: [{
+                                label: '累计掌握知识点',
+                                data: progressData,
+                                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                                borderColor: 'rgba(59, 130, 246, 1)',
+                                borderWidth: 2,
+                                tension: 0.3,
+                                fill: true
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: '知识点数量'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            
+            // 更新记忆保留率图表
+            if (charts.retentionChart) {
+                charts.retentionChart.data.labels = retentionLabels;
+                charts.retentionChart.data.datasets[0].data = retentionData;
+                charts.retentionChart.update();
+            } else {
+                const retentionCtx = document.getElementById('retentionChart');
+                if (retentionCtx) {
+                    charts.retentionChart = new Chart(retentionCtx, {
+                        type: 'line',
+                        data: {
+                            labels: retentionLabels,
+                            datasets: [{
+                                label: '记忆保留率',
+                                data: retentionData,
+                                backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                                borderColor: 'rgba(16, 185, 129, 1)',
+                                borderWidth: 2,
+                                tension: 0.3,
+                                fill: true
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: false,
+                                    min: 30,
+                                    max: 100,
+                                    title: {
+                                        display: true,
+                                        text: '记忆保留率 (%)'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        // 初始化标签页图表
+        function initializeTabCharts(tabId) {
+            // 延迟初始化以确保DOM已完全渲染
+            setTimeout(() => {
+                switch(tabId) {
+                    case 'user-analysis':
+                        initializeUserAnalysisCharts();
+                        break;
+                    case 'learning-model':
+                        initializeLearningModelCharts();
+                        break;
+                    case 'simulation':
+                        // 模拟标签页的图表在用户点击"运行模拟"时初始化
+                        break;
+                    case 'business-model':
+                        initializeBusinessModelCharts();
+                        break;
+                    case 'roadmap':
+                        initializeRoadmapCharts();
+                        break;
+                }
+            }, 100);
+        }
+
+        // 初始化用户分析图表
+        function initializeUserAnalysisCharts() {
+            // 用户类型分布图
+            if (!charts.userTypeChart && document.getElementById('userTypeChart')) {
+                charts.userTypeChart = new Chart(document.getElementById('userTypeChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['在职冲刺族', '宝妈攻坚族', '入门兼职备考者'],
+                        datasets: [{
+                            data: [60, 25, 15],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.8)',
+                                'rgba(139, 92, 246, 0.8)',
+                                'rgba(16, 185, 129, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(139, 92, 246, 1)',
+                                'rgba(16, 185, 129, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                            },
+                            title: {
+                                display: true,
+                                text: 'CPA考生类型分布'
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // 市场规模图
+            if (!charts.marketSizeChart && document.getElementById('marketSizeChart')) {
+                charts.marketSizeChart = new Chart(document.getElementById('marketSizeChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2020', '2021', '2022', '2023', '2024'],
+                        datasets: [{
+                            label: 'CPA报名人数(万)',
+                            data: [85.2, 92.5, 98.7, 102.8, 107.5],
+                            backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'CPA考试市场规模增长'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: '报名人数(万)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // 初始化学习模型图表
+        function initializeLearningModelCharts() {
+            // 记忆曲线对比图
+            if (!charts.memoryCurveChart && document.getElementById('memoryCurveChart')) {
+                charts.memoryCurveChart = new Chart(document.getElementById('memoryCurveChart'), {
+                    type: 'line',
+                    data: {
+                        labels: ['学习后', '1天', '3天', '7天', '14天', '30天', '60天'],
+                        datasets: [
+                            {
+                                label: '传统学习记忆保留率',
+                                data: [100, 60, 40, 25, 15, 10, 5],
+                                backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                                borderColor: 'rgba(239, 68, 68, 1)',
+                                borderWidth: 2,
+                                tension: 0.3,
+                                fill: true
+                            },
+                            {
+                                label: 'SRS学习记忆保留率',
+                                data: [100, 90, 85, 80, 75, 70, 65],
+                                backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                                borderColor: 'rgba(16, 185, 129, 1)',
+                                borderWidth: 2,
+                                tension: 0.3,
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: '记忆曲线对比'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                min: 0,
+                                max: 100,
+                                title: {
+                                    display: true,
+                                    text: '记忆保留率 (%)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // 初始化商业模式图表
+        function initializeBusinessModelCharts() {
+            // 收入漏斗图
+            if (!charts.revenueFunnelChart && document.getElementById('revenueFunnelChart')) {
+                charts.revenueFunnelChart = new Chart(document.getElementById('revenueFunnelChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['免费用户', '活跃用户', '付费用户', 'B端客户'],
+                        datasets: [
+                            {
+                                label: '用户数量',
+                                data: [100000, 20000, 2000, 50],
+                                backgroundColor: [
+                                    'rgba(59, 130, 246, 0.8)',
+                                    'rgba(16, 185, 129, 0.8)',
+                                    'rgba(245, 158, 11, 0.8)',
+                                    'rgba(139, 92, 246, 0.8)'
+                                ],
+                                borderColor: [
+                                    'rgba(59, 130, 246, 1)',
+                                    'rgba(16, 185, 129, 1)',
+                                    'rgba(245, 158, 11, 1)',
+                                    'rgba(139, 92, 246, 1)'
+                                ],
+                                borderWidth: 1
+                            },
+                            {
+                                label: '收入贡献',
+                                data: [0, 10, 60, 30],
+                                backgroundColor: 'rgba(239, 68, 68, 0.5)',
+                                borderColor: 'rgba(239, 68, 68, 1)',
+                                borderWidth: 1,
+                                yAxisID: 'y1'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: '用户转化与收入贡献'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '用户数量'
+                                },
+                                position: 'left'
+                            },
+                            y1: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '收入贡献 (%)'
+                                },
+                                position: 'right',
+                                grid: {
+                                    drawOnChartArea: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // 初始化路线图图表
+        function initializeRoadmapCharts() {
+            // 技术积累与商业化节奏图
+            if (!charts.rhythmChart && document.getElementById('rhythmChart')) {
+                charts.rhythmChart = new Chart(document.getElementById('rhythmChart'), {
+                    type: 'radar',
+                    data: {
+                        labels: [
+                            '技术积累',
+                            '数据积累',
+                            '用户增长',
+                            '产品完善',
+                            '商业化程度',
+                            '市场扩张'
+                        ],
+                        datasets: [
+                            {
+                                label: '第一代 (0-6个月)',
+                                data: [60, 40, 30, 50, 20, 10],
+                                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                                borderColor: 'rgba(59, 130, 246, 0.8)',
+                                borderWidth: 2,
+                                pointBackgroundColor: 'rgba(59, 130, 246, 1)'
+                            },
+                            {
+                                label: '第二代 (6-18个月)',
+                                data: [75, 70, 65, 80, 60, 40],
+                                backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                                borderColor: 'rgba(16, 185, 129, 0.8)',
+                                borderWidth: 2,
+                                pointBackgroundColor: 'rgba(16, 185, 129, 1)'
+                            },
+                            {
+                                label: '第三代 (18-36个月)',
+                                data: [90, 90, 85, 95, 85, 80],
+                                backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                                borderColor: 'rgba(139, 92, 246, 0.8)',
+                                borderWidth: 2,
+                                pointBackgroundColor: 'rgba(139, 92, 246, 1)'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: '产品发展阶段雷达图'
+                            }
+                        },
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    stepSize: 20
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+<script>window.parent.postMessage({ action: "ready" }, "*"); 
+ 
+window.console = new Proxy(console, {
+  get(target, prop) {
+    if (['log', 'warn', 'error'].includes(prop)) {
+      return new Proxy(target[prop], {
+        apply(fn, thisArg, args) {
+          fn.apply(thisArg, args);
+          window.parent.postMessage({ action: 'console', 
+            type: prop, 
+            args: args.map((arg) => {
+              try {
+                return JSON.stringify(arg).replace(/^["']|["']$/g, '');
+              } catch (e) {
+                return arg;
+              }
+            }) 
+          }, '*');
+        }
+      });
+    }
+    return target[prop];
+  }
+});
+</script></body>
+</html>
